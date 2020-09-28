@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "3.2.0",
+    "dotenv": "8.2.0",
     "etherlime": "2.3.3",
     "etherlime-lib": "1.2.3"
   }
