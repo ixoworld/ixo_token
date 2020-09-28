@@ -1,11 +1,11 @@
 pragma solidity 0.6.12;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Pausable.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract IXO_Token is ERC20Pausable, Ownable {
+contract IXO_Token is IERC20, ERC20Pausable, Ownable {
     using SafeERC20 for IERC20;
 
     constructor(string memory _name, string memory _symbol)
@@ -17,6 +17,36 @@ contract IXO_Token is ERC20Pausable, Ownable {
 
     /**
         ------------------------------------------------------------------------
+        Pausable functionality
+
+        This functionality has been taken from the OpenZeppelin library v2.5.0:
+        @openzeppelin/contracts/token/ERC20/ERC20Burnable (v2.5.0)
+
+        This functionality has been added from OZ v.2.5.0 in order to allow 
+        the owner of the contract to be able to pause the contract. The role
+        has been switched from the Pauser role to the Owner role in order to
+        reduce complexity in role management. 
+
+        For more information on this change please see the README
+        ------------------------------------------------------------------------
+    */
+
+    /**
+     * @dev Called by a pauser to pause, triggers stopped state.
+     */
+    function pause() public onlyOwner() whenNotPaused {
+        _pause();
+    }
+
+    /**
+     * @dev Called by a pauser to unpause, returns to normal state.
+     */
+    function unpause() public onlyOwner() whenPaused {
+        _unpause();
+    }
+
+    /**
+        ------------------------------------------------------------------------
         Burnable functionality
 
         This has been taken out of the:
@@ -24,6 +54,7 @@ contract IXO_Token is ERC20Pausable, Ownable {
 
         This functionality has been removed from the Burnable contract and added
         directly here in order to prevent an inheritance clash. 
+
         For more information on this inheritance clash please see the README
         ------------------------------------------------------------------------
     */
