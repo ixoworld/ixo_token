@@ -1,0 +1,25 @@
+{
+  "name": "ixo_token",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ixoworld/ixo_token.git",
+  "author": "Veronica <veronica.21.coutts@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "make": "etherlime init",
+    "build": "etherlime compile --runs=100 --solcVersion=0.6.12 --exportAbi",
+    "flat": "etherlime flatten IXO_Token.sol --solcVersion=0.6.12",
+    "start": "etherlime ganache -q --networkId=1337 --gasLimit=9000000",
+    "test": "etherlime test --solcVersion=0.6.12 --output=none --timeout 100000 --gas-report=true",
+    "remixd": "remixd -s ./contracts --remix-ide https://remix.ethereum.org",
+    "cover": "etherlime coverage --runs=100  --solcVersion=0.6.12 --timeout=100000",
+    "deploy:local": "etherlime deploy --compile=false --network=local --runs=500",
+    "deploy:rinkeby": "etherlime deploy --compile=false --network=rinkeby --runs=500",
+    "deploy:mainnet": "etherlime deploy --compile=false --network=mainnet --runs=500"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "3.2.0",
+    "etherlime": "2.3.3",
+    "etherlime-lib": "1.2.3"
+  }
+}
