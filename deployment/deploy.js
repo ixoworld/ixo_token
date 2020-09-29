@@ -5,12 +5,13 @@ const etherlime = require('etherlime-lib');
 const ethers = require("ethers");
 var BigNumber = require('big-number');
 // Contract to be deployed
-const IXOTokenJson = require('../build/IXO_Token.json');
+const IXOTokenABI = require('../build/IXO_Token.json');
 // Configurations for deployment
 var defaultConfigs = {
 	gasLimit: 4700000,
 	gasPrice: 25000000000,
-	chainId: 1
+	chainId: 1,
+	etherscanApiKey: "3DQYBPZZS77YDR15NKJHURVTV9WI2KH6UY"
 };
 // RPC provider for deployment (network dependent)
 var RPC = null;
@@ -110,7 +111,7 @@ const deploy = async (network, secret) => {
 	const deploy = (...args) => deployer.deploy(...args);
 
 	const deployedToken = await deploy(
-		IXOTokenJson,
+		IXOTokenABI,
 		false,
 		process.env.TOKEN_NAME,
 		process.env.TOKEN_SYMBOL

@@ -2,30 +2,6 @@ pragma solidity 0.6.12;// SPDX-License-Identifier: MIT
 
 
 
-/*
- * @dev Provides information about the current execution context, including the
- * sender of the transaction and its data. While these are generally available
- * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with GSN meta-transactions the account sending and
- * paying for execution may not be the actual sender (as far as an application
- * is concerned).
- *
- * This contract is only required for intermediate, library-like contracts.
- */
-abstract contract Context {
-    function _msgSender() internal view virtual returns (address payable) {
-        return msg.sender;
-    }
-
-    function _msgData() internal view virtual returns (bytes memory) {
-        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
-        return msg.data;
-    }
-}
-// SPDX-License-Identifier: MIT
-
-
-
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
  */
@@ -99,7 +75,31 @@ interface IERC20 {
      */
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
-// SPDX-License-Identifier: MIT
+
+
+
+
+/*
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with GSN meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address payable) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes memory) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
+}
+
 
 
 
@@ -258,7 +258,7 @@ library SafeMath {
         return a % b;
     }
 }
-// SPDX-License-Identifier: MIT
+
 
 
 
@@ -399,7 +399,7 @@ library Address {
         }
     }
 }
-// SPDX-License-Identifier: MIT
+
 
 
 
@@ -703,7 +703,7 @@ contract ERC20 is Context, IERC20 {
      */
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual { }
 }
-// SPDX-License-Identifier: MIT
+
 
 
 /**
@@ -790,7 +790,7 @@ contract Pausable is Context {
         emit Unpaused(_msgSender());
     }
 }
-// SPDX-License-Identifier: MIT
+
 
 
 
@@ -815,7 +815,7 @@ abstract contract ERC20Pausable is ERC20, Pausable {
         require(!paused(), "ERC20Pausable: token transfer while paused");
     }
 }
-// SPDX-License-Identifier: MIT
+
 
 
 
@@ -887,7 +887,7 @@ library SafeERC20 {
         }
     }
 }
-// SPDX-License-Identifier: MIT
+
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -957,7 +957,7 @@ contract Ownable is Context {
 
 
 
-contract IXO_Token is ERC20Pausable, Ownable {
+contract IXO_Token is IERC20, ERC20Pausable, Ownable {
     using SafeERC20 for IERC20;
 
     constructor(string memory _name, string memory _symbol)
@@ -969,6 +969,36 @@ contract IXO_Token is ERC20Pausable, Ownable {
 
     /**
         ------------------------------------------------------------------------
+        Pausable functionality
+
+        This functionality has been taken from the OpenZeppelin library v2.5.0:
+        @openzeppelin/contracts/token/ERC20/ERC20Burnable (v2.5.0)
+
+        This functionality has been added from OZ v.2.5.0 in order to allow 
+        the owner of the contract to be able to pause the contract. The role
+        has been switched from the Pauser role to the Owner role in order to
+        reduce complexity in role management. 
+
+        For more information on this change please see the README
+        ------------------------------------------------------------------------
+    */
+
+    /**
+     * @dev Called by a pauser to pause, triggers stopped state.
+     */
+    function pause() public onlyOwner() whenNotPaused {
+        _pause();
+    }
+
+    /**
+     * @dev Called by a pauser to unpause, returns to normal state.
+     */
+    function unpause() public onlyOwner() whenPaused {
+        _unpause();
+    }
+
+    /**
+        ------------------------------------------------------------------------
         Burnable functionality
 
         This has been taken out of the:
@@ -976,6 +1006,7 @@ contract IXO_Token is ERC20Pausable, Ownable {
 
         This functionality has been removed from the Burnable contract and added
         directly here in order to prevent an inheritance clash. 
+
         For more information on this inheritance clash please see the README
         ------------------------------------------------------------------------
     */
