@@ -5,6 +5,7 @@ describe('🛠  IXO Token Tests', () => {
     let owner = accounts[0];
     let user = accounts[1];
     let anotherUser = accounts[2];
+    let newOwner = accounts[3];
 
     let deployer;
 
@@ -72,6 +73,75 @@ describe('🛠  IXO Token Tests', () => {
                 totalSupplyAfter.toString(),
                 ethers.utils.parseUnits("100", 18).toString(),
                 "Total supply has not be influenced by mint"
+            );
+        });
+    });
+
+    /**
+     * This is in no way a comprehensive test of the Ownable functionality, but
+     * rather a test to ensure that the Ownable functions have been correctly
+     * inherited and are correctly access controlled.
+     */
+    describe('📜 Ownable Tests', () => {
+        it('Can get owner', async () => {
+            let ownerFromContract = await IXOTokenInstance.owner();
+
+            assert.equal(
+                ownerFromContract,
+                owner.signer.address,
+                "Owner address in contract incorrect"
+            );
+        });
+
+        it('Can transfer ownership', async () => {
+            let ownerFromContract = await IXOTokenInstance.owner();
+
+            await IXOTokenInstance.from(owner).transferOwnership(
+                newOwner.signer.address
+            );
+
+            let ownerFromContractAfter = await IXOTokenInstance.owner();
+            
+            await assert.revertWith(
+                IXOTokenInstance.from(owner).pause(),
+                "Ownable: caller is not the owner"
+            );
+
+            await IXOTokenInstance.from(newOwner).pause();
+
+            assert.equal(
+                ownerFromContract,
+                owner.signer.address,
+                "Owner address in contract incorrect"
+            );
+            assert.equal(
+                ownerFromContractAfter,
+                newOwner.signer.address,
+                "Owner address has not been updated with transfer"
+            );
+        });
+
+        it('Can renounce ownership', async () => {
+            let ownerFromContract = await IXOTokenInstance.owner();
+
+            await IXOTokenInstance.from(owner).renounceOwnership();
+
+            let ownerFromContractAfter = await IXOTokenInstance.owner();
+
+            await assert.revertWith(
+                IXOTokenInstance.from(owner).pause(),
+                "Ownable: caller is not the owner"
+            );
+
+            assert.equal(
+                ownerFromContract,
+                owner.signer.address,
+                "Initial owner address in contract incorrect"
+            );
+            assert.equal(
+                ownerFromContractAfter,
+                "0x0000000000000000000000000000000000000000",
+                "Owner address after renounce in contract incorrect"
             );
         });
     });
