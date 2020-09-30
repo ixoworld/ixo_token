@@ -19,10 +19,12 @@
 | | [Deployment](#deployment) 
 | [Architecture](#architecture) | [Design Decisions](#design-decisions) 
 |  | [Inheritance](#inheritance) |
-| Additional Documentation | [> Admins: Permissions & Risks]()
-| | [> Gnosis Safe Guide]()
-| | [> Wallet Best Practices]()
 
+#### Additional Documentation
+
+##### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+##### [> Gnosis Safe Guide]()
+##### [> Wallet Best Practices]()
 ---
 
 # Repository Guide
@@ -94,6 +96,7 @@ Below are the steps that need to be taken to deploy on one of the three supporte
     * Ensure the deployer wallet has Ether on the Ethereum Mainnet. Also note that the script has a smart gas price, and is set to use the fast gas price. Depending on network congestion this may require a decent amount of Ether. 
 
 # Architecture
+
 
 ## Design Decisions 
 
