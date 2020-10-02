@@ -23,8 +23,8 @@
 #### Additional Documentation
 
 ##### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
-##### [> Gnosis Safe Guide](./gnosis_safe_guide.md)
-##### [> Wallet Best Practices]()
+##### [> Gnosis Safe Guide](./resources/gnosis_safe_guide.md)
+##### [> Wallet Best Practices](./resources/wallet_best_practices.md)
 ---
 
 # Repository Guide
