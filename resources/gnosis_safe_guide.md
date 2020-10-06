@@ -25,7 +25,7 @@
 ## Additional Documentation
 
 ### [< Back to `README`](../README.md)
-### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+### [> Admins: Permissions & Risks](./admin_permissions_and_risks.md)
 ### [> Wallet Best Practices](./wallet_best_practices.md)
 
 ---

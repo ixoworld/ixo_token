@@ -23,7 +23,7 @@
 ## Additional Documentation
 
 ### [< Back to `README`](../README.md)
-### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+### [> Admins: Permissions & Risks](./admin_permissions_and_risks.md)
 ### [> Wallet Best Practices](./wallet_best_practices.md)
 
 ---
@@ -34,7 +34,7 @@
 |:-----:|:-----------|
 | **EOA** | "Ethereum accounts that use traditional key pairs" - [Gnosis Safe docs](https://docs.gnosis.io/safe/docs/intro_accounts/#eoas). EOA wallets consist of a unique public address and a cryptographically linked private key. The private key can be used to sign transactions and messages. If your private key is leaked (anyone else gains access to it) there is no way to reverse any malicious transactions that may happen. |
 | **Mnemonic** | "A mnemonic phrase or mnemonic seed is a set of typically either 12 or 24 words, which can be used to derive an infinite number of wallets" - [MyCrypto blog](https://support.mycrypto.com/general-knowledge/cryptography/how-do-mnemonic-phrases-work#:~:text=A%20mnemonic%20phrase%20or%20mnemonic,an%20infinite%20number%20of%20wallets.&text=In%20the%20Ethereum%20ecosystem%2C%20mnemonic,following%20the%20BIP%2032%20spec.). If a mnemonic gets compromised an attacker can not only gain access to your wallet, but every wallet that could ever be created from that mnemonic. The storage of a mnemonic should be treated with the highest level of security. |
-| **Paper Wallet** | A paper wallet is an EOA wallet that has been generated without being connected to the internet. Paper wallets allow you to send funds to this highly secure account. Paper wallets cannot sign transactions unless  |
+| **Paper Wallet** | A paper wallet is an EOA wallet that has been generated without being connected to the internet. Paper wallets allow you to send funds to this highly secure account. Paper wallets cannot sign transactions unless loaded onto a ledger. This may compromise the air-gapped nature of the paper wallet. |
 | **Hardware Wallet** | "Hardware wallets are dedicated devices that keep private keys safe" - [Consensys digital asset storage](https://media.consensys.net/how-to-store-digital-assets-on-ethereum-a2bfdcf66bd0). These physical devices allow you to sign transactions and messages in a secure way, irrespective of the security of the device (laptop/mobile etc) you are connecting through. This means your laptop could be compromised, hacked and key logged and your private key will never be at risk. |
 
 # Creating a Secure Wallet
