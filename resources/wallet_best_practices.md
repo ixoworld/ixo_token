@@ -10,7 +10,7 @@
 </div>
 
 ---
-### Index 
+# Index 
 
 | Heading | Topic | 
 |:--------|:------|
@@ -20,11 +20,11 @@
 | |[Hard Wallets](#hard-wallets) | 
 | [Additional Resources and Sources](#additional-resources-and-sources) |
 
-#### Additional Documentation
+## Additional Documentation
 
-##### [< Back to `README`](../README.md)
-##### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
-##### [> Wallet Best Practices](./wallet_best_practices.md)
+### [< Back to `README`](../README.md)
+### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+### [> Wallet Best Practices](./wallet_best_practices.md)
 
 ---
 

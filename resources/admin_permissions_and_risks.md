@@ -10,7 +10,7 @@
 </div>
 
 ---
-### Index 
+# Index 
 
 | Heading | Topic | 
 |:--------|:------|
@@ -21,11 +21,11 @@
 | [Pausable](#pausable) | [Pausable Permissions](#pausable-permissions) 
 |  | [Risks of Pausability](#risks-of-pausability) |
 
-#### Additional Documentation
+## Additional Documentation
 
-##### [< Back to `README`](../README.md)
-##### [> Gnosis Safe Guide](./gnosis_safe_guide.md)
-##### [> Wallet Best Practices](./wallet_best_practices.md)
+### [< Back to `README`](../README.md)
+### [> Gnosis Safe Guide](./gnosis_safe_guide.md)
+### [> Wallet Best Practices](./wallet_best_practices.md)
 
 ---
 

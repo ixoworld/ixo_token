@@ -10,7 +10,7 @@
 </div>
 
 ---
-### Index 
+# Index 
 
 | Heading | Topic | 
 |:--------|:------|
@@ -22,11 +22,11 @@
 | | [Approving transactions](#approving-transactions) |
 | [Multi-Sig Management](#multi-sig-management) | [Adding and removing wallets](#adding-and-removing-wallets)
 
-#### Additional Documentation
+## Additional Documentation
 
-##### [< Back to `README`](../README.md)
-##### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
-##### [> Wallet Best Practices](./wallet_best_practices.md)
+### [< Back to `README`](../README.md)
+### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+### [> Wallet Best Practices](./wallet_best_practices.md)
 
 ---
 

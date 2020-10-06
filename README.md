@@ -10,7 +10,7 @@
 </div>
 
 ---
-### Index 
+# Index 
 
 | Heading | Topic | 
 |:--------|:------|
@@ -20,11 +20,11 @@
 | [Architecture](#architecture) | [Design Decisions](#design-decisions) 
 |  | [Inheritance](#inheritance) |
 
-#### Additional Documentation
+## Additional Documentation
 
-##### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
-##### [> Gnosis Safe Guide](./resources/gnosis_safe_guide.md)
-##### [> Wallet Best Practices](./resources/wallet_best_practices.md)
+### [> Admins: Permissions & Risks](./resources/admin_permissions_and_risks.md)
+### [> Gnosis Safe Guide](./resources/gnosis_safe_guide.md)
+### [> Wallet Best Practices](./resources/wallet_best_practices.md)
 ---
 
 # Repository Guide
@@ -59,7 +59,9 @@ In a terminal run:
 
 It may take some time to run, but you should see the following:
 
-<img src="./resources/coverage.png" />
+<div align="center">
+<img src="./resources/coverage.png" style="width:550px;height:700px;"/>
+</div>
 
 ## Deployment
 A comprehensive deployment script has been written for this token. 
@@ -97,8 +99,23 @@ Below are the steps that need to be taken to deploy on one of the three supporte
 
 # Architecture
 
+## Design Decisions
+OpenZeppelin V3.x uses hooks (see their [documentation here](https://docs.openzeppelin.com/contracts/3.x/extending-contracts#using-hooks)). This hook is present in the `ERC20` contract, and is overridden in the `ERC20Pausable` contract. 
 
-## Design Decisions 
+This caused an issue as the token is using `ERC20Pausable` as well as `ERC20Mintable`. Both of these contracts inherit `ERC20`. The conflict then arose (irrespective of the inheritance order) with having the token inherit from pausable and mintable. 
+
+This conflict could be fixed, but would require modifying the OpenZeppelin smart contracts, which would go against the scope for this project. 
+
+<div align="center">
+<img src="./resources/hooks_conflict.png" style="width:600px;height:400px;"/>
+</div>
 
 ## Inheritance
+Below is the final inheritance structure of the token. The mintable and burnable functionality where the easiest to move out of their own contracts and simply implement their functionality directly inside the IXO token. 
+
+This removed the inheritance conflict discussed above, as well as making the token contract easier to read and understand. 
+
+<div align="center">
+<img src="./resources/build.png" style="width:450px;height:600px;"/>
+</div>
 

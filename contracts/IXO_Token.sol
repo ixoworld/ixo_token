@@ -98,8 +98,8 @@ contract IXO_Token is IERC20, ERC20Pausable, Ownable {
         
         This was done to provide an audited mint functionality (as there is no
         equivalent in OZ v3.x). The access control has been updated from the
-        Mintable Role to the Ownable role in order to reduce the amount of code
-        taken from the older library. 
+        Mintable Role to the Ownable role order to reduce complexity in role 
+        management. 
 
         For more information on this change please see the README
         ------------------------------------------------------------------------
