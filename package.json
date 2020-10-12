@@ -23,6 +23,7 @@
     "dotenv": "8.2.0",
     "etherlime": "2.3.0",
     "etherlime-lib": "1.2.3",
-    "ethers": "4.0.47"
+    "ethers": "4.0.47",
+    "remixd": "^0.2.4-alpha.0"
   }
 }
